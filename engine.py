@@ -158,7 +158,8 @@ def train(
       "train_loss": [],
       "train_acc": [],
       "test_loss": [],
-      "test_acc": []
+      "test_acc": [],
+      "state_dict": []
   }
   # Setup learning rate scheduler
   scheduler = lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
@@ -190,5 +191,6 @@ def train(
     results["train_acc"].append(train_acc)
     results["test_loss"].append(test_loss)
     results["test_acc"].append(test_acc)
+    results["state_dict"].append(model.state_dict())
   # Return filled results at end of epochs
   return results
