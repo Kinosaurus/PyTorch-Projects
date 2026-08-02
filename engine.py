@@ -169,14 +169,12 @@ def train(
   # Iterate through epochs
   for epoch in tqdm(range(epochs)):
     # Training
-    train_loss, train_acc, learning_rate = train_step(
+    train_loss, train_acc = train_step(
       model=model,
       train_dataloader=train_dataloader,
       optimizer=optimizer,
       device=device,
-      loss_fn=loss_fn,
-      step_size=step_size,
-      gamma=gamma
+      loss_fn=loss_fn
     )
     # Evaluation
     test_loss, test_acc = test_step(
