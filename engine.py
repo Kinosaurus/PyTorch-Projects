@@ -135,8 +135,6 @@ def train(
   optimizer: torch.optim.Optimizer,
   device: torch.device,
   epochs: int,
-  step_size: int=10,
-  gamma: float=0.1,
   loss_fn: nn.Module=nn.CrossEntropyLoss()) -> Dict[str,List]:
   """Performs training and testing on PyTorch model for given number of epochs.
 
@@ -149,8 +147,6 @@ def train(
     optimizer (torch.optim.Optimizer): A PyTorch optimizer to help minimize the loss function.
     device (torch.device): The target device to compute on. (e.g. "cuda" or "cpu")
     epochs (int): The number of iterations to train the model for.
-    step_size (int): After every step_size epochs, learning rate to decay. Default: 10.
-    gamma (float): Factor for learning rate to drop by. Default: 0.1
     loss_fn (nn.Module): A PyTorch loss function to minimize.
 
   Returns:
@@ -165,7 +161,7 @@ def train(
       "test_acc": []
   }
   # Setup learning rate scheduler
-  scheduler = lr_scheduler.StepLR(optimizer, step_size=step_size, gamma=gamma)
+  scheduler = lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
   # Iterate through epochs
   for epoch in tqdm(range(epochs)):
     # Training
