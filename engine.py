@@ -162,7 +162,7 @@ def train(
       "state_dict": []
   }
   # Setup learning rate scheduler
-  scheduler = lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
+  # scheduler = lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
   # Iterate through epochs
   for epoch in tqdm(range(epochs)):
     # Training
@@ -181,11 +181,12 @@ def train(
       loss_fn=loss_fn
     )
     # Update Learning Rate
-    scheduler.step()
+    # scheduler.step()
     # Latest Learning Rate
-    learning_rate = scheduler.get_last_lr()[0]
+    # learning_rate = scheduler.get_last_lr()[0]
     # Visualise results for this epoch
-    print(f"Epoch: {epoch+1} | Learning Rate: {learning_rate} | Train Loss: {train_loss:.4f} | Train Accuracy: {train_acc:.4f} | Test Loss: {test_loss:.4f} | Test Accuracy {test_acc:.4f}")
+    # print(f"Epoch: {epoch+1} | Learning Rate: {learning_rate} | Train Loss: {train_loss:.4f} | Train Accuracy: {train_acc:.4f} | Test Loss: {test_loss:.4f} | Test Accuracy {test_acc:.4f}")
+    print(f"Epoch: {epoch+1} | Train Loss: {train_loss:.4f} | Train Accuracy: {train_acc:.4f} | Test Loss: {test_loss:.4f} | Test Accuracy {test_acc:.4f}")
     # Update results dict
     results["train_loss"].append(train_loss)
     results["train_acc"].append(train_acc)
